@@ -1,0 +1,327 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary-red: #BC0100;
+    --color-stark-white: #FFFFFF;
+    --color-void-black: #000000;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: #000000;
+    color: #FFFFFF;
+  }
+
+  body {
+    font-family: 'JetBrains Mono', monospace;
+    overflow-x: hidden;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    *, body, a, button, input, select, textarea {
+      cursor: none !important;
+    }
+  }
+
+  /* Custom scrollbars */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #000000;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #2a2a2a;
+    border-radius: 0px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #BC0100;
+  }
+}
+
+/* -------------------------------------------------------------
+   ZENJI INTRO SPLASH KEYFRAMES & UTILITIES (Exact from Live Site)
+   ------------------------------------------------------------- */
+@keyframes zslamW {
+  from { transform: translateX(112%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes zin {
+  0% { opacity: 0; transform: scale(1.35) skewX(-6deg); }
+  100% { opacity: 1; transform: scale(1) skewX(0); }
+}
+
+@keyframes zgA {
+  0% { clip-path: inset(0 0 86% 0); }
+  20% { clip-path: inset(38% 0 40% 0); }
+  40% { clip-path: inset(74% 0 6% 0); }
+  60% { clip-path: inset(10% 0 70% 0); }
+  80% { clip-path: inset(54% 0 26% 0); }
+  100% { clip-path: inset(2% 0 88% 0); }
+}
+
+@keyframes zgB {
+  0% { clip-path: inset(70% 0 6% 0); }
+  25% { clip-path: inset(20% 0 60% 0); }
+  50% { clip-path: inset(82% 0 4% 0); }
+  75% { clip-path: inset(4% 0 82% 0); }
+  100% { clip-path: inset(46% 0 36% 0); }
+}
+
+@keyframes zkanji {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.05); }
+}
+
+@keyframes zlines {
+  0% { opacity: 0; transform: scale(0.35) rotate(0deg); }
+  55% { opacity: 0; }
+  70% { opacity: 0.4; }
+  100% { opacity: 0.16; transform: scale(1.7) rotate(8deg); }
+}
+
+@keyframes zflash {
+  0%, 70% { opacity: 0; }
+  85% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+@keyframes zfade {
+  0%, 82% { opacity: 1; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+@keyframes zshake {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(-2px, 1px); }
+  40% { transform: translate(2px, -1px); }
+  60% { transform: translate(-1px, -1px); }
+  80% { transform: translate(2px, 1px); }
+}
+
+@keyframes zscan {
+  from { background-position: 0 0; }
+  to { background-position: 0 5px; }
+}
+
+@keyframes zshine {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 220% 50%; }
+}
+
+@keyframes loading-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(0.8); opacity: 0.4; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Splash Classes */
+.zenji-splash {
+  animation: zfade 2.85s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+}
+
+.zstage {
+  position: absolute;
+  inset: 0;
+  isolation: isolate;
+}
+
+.zbg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(125% 105% at 50% 42%, #181818 0%, #0B0B0B 50%, #060606 100%);
+}
+
+.zhalf {
+  position: absolute;
+  inset: 0;
+  background: #FFFFFF;
+  clip-path: polygon(60% 0, 100% 0, 100% 100%, 40% 100%);
+  animation: zslamW 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.zkanji {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  mix-blend-mode: difference;
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", YuMincho, "Noto Serif JP", "Source Han Serif JP", serif;
+  font-weight: 700;
+  line-height: 1;
+  font-size: 60vw;
+  opacity: 0.5;
+  animation: zkanji 1.2s ease-in-out infinite;
+}
+
+.zlines {
+  position: absolute;
+  inset: -45%;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  background: repeating-conic-gradient(from 0deg at 50% 50%, rgba(255, 255, 255, 0.5) 0deg 1.1deg, transparent 1.1deg 5deg);
+  animation: zlines 2.6s ease-out both;
+}
+
+.zscan {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.22;
+  mix-blend-mode: multiply;
+  background: repeating-linear-gradient(to bottom, transparent 0 2px, rgba(0, 0, 0, 0.5) 2px 3px);
+  animation: zscan 0.5s steps(3) infinite;
+}
+
+.zwrap {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  animation: zshake 0.2s infinite;
+}
+
+.zword {
+  position: relative;
+  font-family: 'Archivo', sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  font-size: 18vw;
+  line-height: 0.9;
+  background: linear-gradient(105deg, #ECEDF0 0%, #9DA0A8 28%, #6E7178 50%, #C0C3C9 72%, #83868E 100%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  -webkit-text-stroke: 1.1px rgba(18, 18, 22, 0.3);
+  filter: drop-shadow(0 0 24px rgba(200, 205, 215, 0.3));
+  animation: zin 0.55s cubic-bezier(0.16, 1, 0.3, 1) both, zshine 3.4s linear infinite;
+}
+
+.zword::before,
+.zword::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-text-stroke: 0;
+}
+
+.zword::before {
+  color: #D7D9DE;
+  -webkit-text-fill-color: #D7D9DE;
+  transform: translate(-2px, 0);
+  animation: zgA 1.7s steps(2) infinite;
+}
+
+.zword::after {
+  color: #54575E;
+  -webkit-text-fill-color: #54575E;
+  transform: translate(2px, 0);
+  animation: zgB 2.1s steps(2) infinite;
+}
+
+.zflash {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  opacity: 0;
+  pointer-events: none;
+  animation: zflash 2.85s ease-in forwards;
+}
+
+.zhud {
+  position: absolute;
+  bottom: 22px;
+  mix-blend-mode: difference;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #fff;
+  opacity: 0.8;
+}
+
+@media (min-width: 768px) {
+  .zword { font-size: 12vw; }
+  .zkanji { font-size: 38vw; }
+}
+
+/* -------------------------------------------------------------
+   BRAND STYLES & INTERACTION SYSTEM
+   ------------------------------------------------------------- */
+
+.zenji-logo-chamfer {
+  clip-path: polygon(0 14%, 9% 0, 100% 0, 100% 86%, 91% 100%, 0 100%);
+  -webkit-clip-path: polygon(0 14%, 9% 0, 100% 0, 100% 86%, 91% 100%, 0 100%);
+}
+
+.nav-link-glow {
+  position: relative;
+  letter-spacing: 0.15em;
+  transition: all 0.25s ease;
+}
+
+.nav-link-glow:hover {
+  color: #BC0100;
+  text-shadow: 0 0 12px rgba(188, 1, 0, 0.6);
+}
+
+.hard-shadow {
+  box-shadow: 4px 4px 0px 0px #000000;
+  border: 1px solid #FFFFFF;
+}
+
+.hard-shadow-red {
+  box-shadow: 4px 4px 0px 0px #BC0100;
+}
+
+.card-hover-border {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.card-hover-border:hover {
+  border-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Countdown neon boxes */
+.countdown-box {
+  border: 1px solid #BC0100;
+  box-shadow: 0 0 20px rgba(188, 1, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.countdown-box:hover {
+  box-shadow: 0 0 30px rgba(188, 1, 0, 0.5);
+  border-color: #ff2a2a;
+}
+
+/* Ethos overlay and textures */
+.ethos-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.7) 40%, rgba(0,0,0,0.4) 100%);
+}
+
+/* Responsive Hide Scrollbar Utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
