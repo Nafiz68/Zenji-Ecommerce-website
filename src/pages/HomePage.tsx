@@ -4,6 +4,7 @@ import { PRODUCTS } from '../data/products';
 import { ProductCard } from '../components/ProductCard';
 import ScrollStack, { ScrollStackItem } from '../components/ScrollStack';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { BRAND } from '../brand';
 
 interface HomePageProps {
   navigate: (path: string) => void;
@@ -19,13 +20,8 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
     }
   };
 
-  // 4 Featured Sale Showcase Cards in exact order matching live site
-  const showcaseProducts = [
-    PRODUCTS.find((p) => p.id === 'demon-blood-tee') || PRODUCTS[1],
-    PRODUCTS.find((p) => p.id === 'blue-flame-tee') || PRODUCTS[0],
-    PRODUCTS.find((p) => p.id === 'will-of-the-sun-tee') || PRODUCTS[2],
-    PRODUCTS.find((p) => p.id === 'warrior-spirit-tee') || PRODUCTS[3],
-  ];
+  // First 4 products feature in the stacked showcase
+  const showcaseProducts = PRODUCTS.slice(0, 4);
 
   return (
     <main className="relative bg-black text-white w-full overflow-hidden">
@@ -42,7 +38,7 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
           <div
             className="w-full h-full bg-cover bg-center bg-no-repeat opacity-60 mix-blend-luminosity scale-105 transition-transform duration-1000"
             style={{
-              backgroundImage: `url('https://res.cloudinary.com/diqbikizp/image/upload/f_auto,q_auto/zenji/products/Blue-flame-5.webp')`,
+              backgroundImage: `url('/placeholder.svg')`,
               backgroundPosition: 'center 25%',
             }}
           />
@@ -60,21 +56,21 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
         {/* Left Bottom Hero Content */}
         <div className="relative z-10 mx-auto w-full max-w-[1440px] px-6 md:px-14 pb-16 md:pb-24">
           <div className="max-w-2xl">
-            {/* Blinking Live System Beacon */}
+            {/* Brand label */}
             <div className="mb-4 flex items-center gap-3">
-              <span className="h-2 w-2 rounded-full bg-[#BC0100] animate-pulse-slow shadow-[0_0_10px_#BC0100]" />
-              <span className="font-jetbrains text-[11px] font-bold tracking-[0.3em] text-[#BC0100] uppercase flex items-center gap-1">
-                SYSTEM // ZENJI
-                <span className="animate-ping ml-1 inline-block h-1 w-1 rounded-full bg-[#BC0100]" />
+              <span className="h-2 w-2 rounded-full bg-accent animate-pulse" />
+              <span className="font-sans text-[11px] font-bold tracking-[0.3em] text-accent uppercase flex items-center gap-1">
+                {BRAND.name}
+                <span className="animate-ping ml-1 inline-block h-1 w-1 rounded-full bg-accent" />
               </span>
             </div>
 
             {/* Kinetic Title */}
-            <h1 className="font-anton uppercase leading-[0.85] text-6xl sm:text-7xl md:text-8xl lg:text-[100px] tracking-tight">
-              <span>WEAR YOUR</span>
+            <h1 className="font-display uppercase leading-[0.85] text-6xl sm:text-7xl md:text-8xl lg:text-[100px] tracking-tight">
+              <span>GOOD TEES,</span>
               <br />
               <span className="text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]">
-                STORY
+                WORN OFTEN
               </span>
             </h1>
 
@@ -82,9 +78,9 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
             <div className="hero-buttons mt-8">
               <button
                 onClick={() => navigate('/drop')}
-                className="inline-flex items-center gap-2 rounded-none bg-[#BC0100] px-8 md:px-10 py-4 font-anton text-base md:text-lg uppercase text-white transition-all duration-300 hover:bg-white hover:text-black hover:shadow-[0_0_20px_rgba(188,1,0,0.6)] group"
+                className="inline-flex items-center gap-2 rounded-none bg-accent px-8 md:px-10 py-4 font-display text-base md:text-lg uppercase text-white transition-all duration-300 hover:bg-white hover:text-black group"
               >
-                SHOP THE DROP
+                SHOP NEW ARRIVALS
                 <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
               </button>
             </div>
@@ -93,15 +89,15 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
       </section>
 
       {/* -------------------------------------------------------------
-          2. FOUR WORLDS / ABOUT SPLIT SECTION
+          2. ABOUT SPLIT SECTION
           ------------------------------------------------------------- */}
       <section id="four-worlds" className="relative bg-black text-white border-y border-white/10">
         <div className="flex flex-col md:flex-row min-h-[75vh]">
           {/* Left Media Column */}
           <div className="relative w-full md:w-1/2 min-h-[380px] md:min-h-full overflow-hidden bg-[#0A0A0A]">
             <img
-              src="https://res.cloudinary.com/diqbikizp/image/upload/f_auto,q_auto/zenji/products/Warrior-spirit-1.webp"
-              alt="ZENJI Cyber Ronin Art"
+              src="/placeholder.svg"
+              alt="Graphic tee artwork"
               className="absolute inset-0 h-full w-full object-cover object-center filter brightness-75 contrast-110 hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-black/90 hidden md:block" />
@@ -118,49 +114,49 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
               transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
             >
               <div className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#BC0100] animate-pulse" />
-                <span className="font-jetbrains text-[11px] tracking-widest text-[#BC0100] uppercase block">
-                  ABOUT // ZENJI
+                <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
+                <span className="font-sans text-[11px] tracking-widest text-accent uppercase block">
+                  ABOUT {BRAND.name}
                 </span>
               </div>
               <motion.span
                 aria-hidden="true"
-                className="my-4 block h-0.5 w-10 bg-[#BC0100] origin-left"
+                className="my-4 block h-0.5 w-10 bg-accent origin-left"
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.15 }}
               />
 
-              <h2 className="font-anton text-4xl sm:text-5xl md:text-6xl uppercase leading-[0.88] text-white mb-6">
-                BORN FROM THE <br />
-                <span className="text-[#BC0100]">WARRIOR SPIRIT.</span>
+              <h2 className="font-display text-4xl sm:text-5xl md:text-6xl uppercase leading-[0.88] text-white mb-6">
+                PRINTED IN <br />
+                <span className="text-accent">SMALL BATCHES.</span>
               </h2>
 
-              <p className="font-ibm text-[13px] leading-relaxed text-white/70 mb-4">
-                ZENJI began with one belief: what you wear should tell a story.
+              <p className="font-sans text-[13px] leading-relaxed text-white/70 mb-4">
+                We make original graphic tees and print them in small runs.
               </p>
 
-              <p className="font-ibm text-[12px] leading-relaxed text-white/50 mb-4">
-                Inspired by samurai discipline, anime art and modern street culture, we create premium streetwear for those who choose their own path.
+              <p className="font-sans text-[12px] leading-relaxed text-white/50 mb-4">
+                Each design is drawn in-house and printed on heavyweight cotton that holds its shape wash after wash.
               </p>
 
-              <p className="font-ibm text-[12px] leading-relaxed text-white/50 mb-6">
-                Every ZENJI piece combines Japanese-inspired artwork, powerful symbolism and oversized silhouettes to express courage, creativity and individuality.
+              <p className="font-sans text-[12px] leading-relaxed text-white/50 mb-6">
+                The fit is relaxed, the fabric is solid, and the tees are made to be worn every day, not saved for special occasions.
               </p>
 
-              <blockquote className="font-ibm text-[13px] italic leading-relaxed text-white/70 border-l-2 border-[#BC0100] pl-4 mb-6 relative group">
-                <div className="absolute inset-0 bg-gradient-to-r from-[#BC0100]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-                "The warrior within refuses to fade into the crowd."
+              <blockquote className="font-sans text-[13px] italic leading-relaxed text-white/70 border-l-2 border-accent pl-4 mb-6 relative group">
+                <div className="absolute inset-0 bg-gradient-to-r from-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                "Make fewer things, and make them properly."
               </blockquote>
 
-              <p className="font-jetbrains text-[10px] uppercase tracking-widest text-white/35 mb-8">
-                For the dreamers. Fighters. Creators. Outsiders.
+              <p className="font-sans text-[10px] uppercase tracking-widest text-white/35 mb-8">
+                Designed and shipped from Australia.
               </p>
 
               <button
                 onClick={() => navigate('/collection')}
-                className="font-jetbrains text-xs uppercase tracking-widest text-white border-b border-white pb-1 transition-colors hover:border-[#BC0100] hover:text-[#BC0100] inline-flex items-center gap-1.5 group"
+                className="font-sans text-xs uppercase tracking-widest text-white border-b border-white pb-1 transition-colors hover:border-accent hover:text-accent inline-flex items-center gap-1.5 group"
               >
                 EXPLORE THE COLLECTION <span className="transition-transform group-hover:translate-x-1">→</span>
               </button>
@@ -170,23 +166,23 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
       </section>
 
       {/* -------------------------------------------------------------
-          3. ORIGIN DROP / SALE SHOWCASE (Authentic Stackup Animation)
+          3. FEATURED SHOWCASE (Stackup Animation)
           ------------------------------------------------------------- */}
       <section id="drop-showcase" className="bg-white text-black pt-12 pb-4 relative overflow-hidden">
         {/* Header Bar */}
         <div className="mx-auto max-w-[1440px] px-6 md:px-14 flex items-end justify-between gap-6 mb-10">
           <div>
-            <span className="font-jetbrains text-xs uppercase tracking-widest text-[#BC0100] block">
-              COLLECTION // THE_ORIGIN_DROP
+            <span className="font-sans text-xs uppercase tracking-widest text-accent block">
+              FEATURED
             </span>
-            <h2 className="mt-2 font-anton text-5xl md:text-7xl uppercase leading-[0.88] tracking-tight text-black">
-              SALE
+            <h2 className="mt-2 font-display text-5xl md:text-7xl uppercase leading-[0.88] tracking-tight text-black">
+              THIS SEASON
             </h2>
           </div>
 
           <button
             onClick={() => navigate('/collection')}
-            className="shrink-0 whitespace-nowrap border border-black px-6 py-3 font-jetbrains text-xs uppercase tracking-widest text-black transition-colors hover:bg-black hover:text-white"
+            className="shrink-0 whitespace-nowrap border border-black px-6 py-3 font-sans text-xs uppercase tracking-widest text-black transition-colors hover:bg-black hover:text-white"
           >
             VIEW_ALL
           </button>
@@ -213,19 +209,19 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
                     height: 'min(780px, 74vh)',
                     width: '100%',
                     maxWidth: '1000px',
-                    borderTop: '4px solid #BC0100',
+                    borderTop: '4px solid #4C6FFF',
                   }}
                 >
                   {/* Product Graphic Background Image */}
                   <img
                     src={prod.images.graphic || prod.images.front}
-                    alt={`ZENJI ${prod.name} anime streetwear graphic`}
+                    alt={`${prod.name} graphic tee`}
                     loading="lazy"
                     className="absolute inset-0 h-full w-full object-cover object-[center_20%] opacity-90 transition-transform duration-700 ease-out group-hover:scale-105"
                   />
 
                   {/* Top-right card badge */}
-                  <div className="absolute top-4 right-5 z-20 font-jetbrains text-[10px] uppercase tracking-widest text-white/50 bg-black/60 px-2 py-0.5 border border-white/10">
+                  <div className="absolute top-4 right-5 z-20 font-sans text-[10px] uppercase tracking-widest text-white/50 bg-black/60 px-2 py-0.5 border border-white/10">
                     0{index + 1} // 04
                   </div>
 
@@ -236,8 +232,8 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
                       background: 'linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.7) 55%, transparent 100%)',
                     }}
                   >
-                    <span className="font-jetbrains text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-[#BC0100] block">
-                      COLLECTION <span className="text-white/45">// THE_ORIGIN_DROP</span>
+                    <span className="font-sans text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-accent block">
+                      FEATURED <span className="text-white/45">// HEAVYWEIGHT COTTON</span>
                     </span>
 
                     <a
@@ -246,17 +242,17 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
                         e.preventDefault();
                         navigate(`/drop/${prod.slug}`);
                       }}
-                      className="font-anton text-3xl sm:text-4xl md:text-5xl uppercase leading-[0.9] text-white mt-2 block hover:text-[#BC0100] transition-colors"
+                      className="font-display text-3xl sm:text-4xl md:text-5xl uppercase leading-[0.9] text-white mt-2 block hover:text-accent transition-colors"
                     >
                       {prod.name}
                     </a>
 
                     <div className="flex items-center gap-3 mt-3">
-                      <span className="font-anton text-2xl text-[#BC0100] leading-none">
+                      <span className="font-display text-2xl text-accent leading-none">
                         {prod.salePrice || prod.price}
                       </span>
                       {prod.onSale && (
-                        <span className="font-jetbrains text-xs text-white/40 line-through">
+                        <span className="font-sans text-xs text-white/40 line-through">
                           {prod.price}
                         </span>
                       )}
@@ -268,7 +264,7 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
                         e.preventDefault();
                         navigate(`/drop/${prod.slug}`);
                       }}
-                      className="mt-6 inline-block font-jetbrains text-xs uppercase tracking-widest text-white border-b border-white/80 pb-1 hover:border-[#BC0100] hover:text-[#BC0100] transition-colors"
+                      className="mt-6 inline-block font-sans text-xs uppercase tracking-widest text-white border-b border-white/80 pb-1 hover:border-accent hover:text-accent transition-colors"
                     >
                       SHOP {prod.name} →
                     </a>
@@ -287,11 +283,11 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
         {/* Header Bar */}
         <div className="mx-auto max-w-[1440px] px-6 md:px-14 flex items-end justify-between gap-6 mb-8">
           <div>
-            <span className="font-jetbrains text-xs uppercase tracking-widest text-[#BC0100] block">
-              COLLECTION // THE_ORIGIN_DROP
+            <span className="font-sans text-xs uppercase tracking-widest text-accent block">
+              THE FULL RANGE
             </span>
-            <h2 className="mt-2 font-anton text-5xl md:text-7xl uppercase leading-[0.88] tracking-tight text-black">
-              LATEST_DROPS
+            <h2 className="mt-2 font-display text-5xl md:text-7xl uppercase leading-[0.88] tracking-tight text-black">
+              NEW IN
             </h2>
           </div>
 
@@ -315,7 +311,7 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
 
             <button
               onClick={() => navigate('/drop')}
-              className="shrink-0 whitespace-nowrap border border-black px-6 py-3 font-jetbrains text-xs uppercase tracking-widest text-black transition-colors hover:bg-black hover:text-white"
+              className="shrink-0 whitespace-nowrap border border-black px-6 py-3 font-sans text-xs uppercase tracking-widest text-black transition-colors hover:bg-black hover:text-white"
             >
               VIEW_ALL
             </button>
@@ -341,17 +337,17 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
       </section>
 
       {/* -------------------------------------------------------------
-          5. MANIFESTO / THE ZENJI ETHOS SECTION
+          5. HOW WE MAKE IT SECTION
           ------------------------------------------------------------- */}
       <section
         id="ethos-section"
-        aria-label="The ZENJI Ethos"
+        aria-label="How we make it"
         className="relative overflow-hidden bg-black py-28 px-6 md:px-14 border-t border-white/10"
       >
         {/* Background Image with Dark Contrast Overlay */}
         <img
-          src="https://res.cloudinary.com/diqbikizp/image/upload/f_auto,q_auto/zenji/products/Demon-blood-5.webp"
-          alt="ZENJI Manifesto backdrop"
+          src="/placeholder.svg"
+          alt=""
           loading="lazy"
           className="absolute inset-0 h-full w-full object-cover object-center opacity-30 mix-blend-luminosity filter contrast-125"
         />
@@ -360,27 +356,27 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
         {/* Text Content */}
         <div className="relative z-10 mx-auto max-w-[1440px]">
           <div className="max-w-2xl">
-            <span className="font-jetbrains text-[11px] tracking-[0.3em] text-[#BC0100] uppercase block">
-              MANIFESTO_001
+            <span className="font-sans text-[11px] tracking-[0.3em] text-accent uppercase block">
+              HOW WE WORK
             </span>
-            <div className="my-4 h-0.5 w-12 bg-[#BC0100]" aria-hidden="true" />
+            <div className="my-4 h-0.5 w-12 bg-accent" aria-hidden="true" />
 
-            <h2 className="font-anton text-5xl sm:text-6xl md:text-7xl uppercase leading-[0.88] text-white mb-6">
-              <span>THE </span>
-              <span className="text-[#BC0100]">ZENJI </span>
-              <span>ETHOS</span>
+            <h2 className="font-display text-5xl sm:text-6xl md:text-7xl uppercase leading-[0.88] text-white mb-6">
+              <span>MADE </span>
+              <span className="text-accent">TO </span>
+              <span>LAST</span>
             </h2>
 
-            <p className="font-ibm text-sm sm:text-base leading-relaxed text-white/80 max-w-xl">
-              We exist at the intersection of technical precision and cultural expression. Our garments are engineered for those navigating an increasingly fragmented world, built from Japanese craftsmanship, anime culture and modern Australian streetwear.
+            <p className="font-sans text-sm sm:text-base leading-relaxed text-white/80 max-w-xl">
+              We keep it simple. Original artwork, heavyweight cotton and careful printing, in quantities small enough that we can check every run. The result is a tee you reach for first, and keep for years.
             </p>
 
             <div className="mt-8">
               <button
                 onClick={() => navigate('/our-story')}
-                className="inline-flex items-center gap-2 font-jetbrains text-xs uppercase tracking-widest text-white border-b border-white pb-1 hover:border-[#BC0100] hover:text-[#BC0100] transition-colors"
+                className="inline-flex items-center gap-2 font-sans text-xs uppercase tracking-widest text-white border-b border-white pb-1 hover:border-accent hover:text-accent transition-colors"
               >
-                READ THE FULL STORY →
+                READ OUR STORY →
               </button>
             </div>
           </div>

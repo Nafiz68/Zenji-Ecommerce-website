@@ -42,7 +42,7 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [cart, setCart] = useState<CartItem[]>(() => {
     try {
-      const saved = localStorage.getItem('zenji_cart');
+      const saved = localStorage.getItem('cart');
       if (saved) {
         const parsed = JSON.parse(saved);
         // Map product IDs back to actual Product objects to ensure data integrity
@@ -75,7 +75,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
         size: item.size,
         quantity: item.quantity,
       }));
-      localStorage.setItem('zenji_cart', JSON.stringify(serializable));
+      localStorage.setItem('cart', JSON.stringify(serializable));
     } catch (e) {
       console.error('Failed to save cart storage', e);
     }
@@ -108,8 +108,8 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     });
 
     addToast(
-      'ADDED TO SECTOR DROP',
-      `${product.name} [SIZE: ${size}] (${quantity}x)`
+      'Added to bag',
+      `${product.name} — size ${size} × ${quantity}`
     );
     setIsCartOpen(true);
   };

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { PRODUCTS, Product } from '../data/products';
 import { ProductCard } from '../components/ProductCard';
 import { ArrowUpDown } from 'lucide-react';
+import { BRAND } from '../brand';
 
 interface CollectionPageProps {
   navigate: (path: string) => void;
@@ -35,16 +36,16 @@ export const CollectionPage: React.FC<CollectionPageProps> = ({ navigate }) => {
         {/* Header Bar */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 pb-8 border-b border-black/15 gap-6">
           <div>
-            <span className="font-jetbrains text-xs uppercase tracking-[0.3em] text-[#BC0100] block mb-2">
-              COLLECTION // THE_ORIGIN_DROP
+            <span className="font-sans text-xs uppercase tracking-[0.3em] text-accent block mb-2">
+              Shop
             </span>
-            <h1 className="font-anton text-5xl sm:text-6xl md:text-8xl uppercase tracking-tight text-black leading-none">
-              ALL DROPS
+            <h1 className="font-display text-5xl sm:text-6xl md:text-8xl uppercase tracking-tight text-black leading-none">
+              ALL PRODUCTS
             </h1>
           </div>
 
-          <p className="font-ibm text-xs text-gray-500 max-w-xs text-left md:text-right">
-            10 limited edition pieces engineered in 240gsm luxury cotton. Final release — no restocks.
+          <p className="font-sans text-xs text-gray-500 max-w-xs text-left md:text-right">
+            Heavyweight cotton tees in a relaxed fit. Some designs are limited runs.
           </p>
         </div>
 
@@ -54,7 +55,7 @@ export const CollectionPage: React.FC<CollectionPageProps> = ({ navigate }) => {
           <div className="flex flex-wrap gap-2">
             <button
               onClick={() => setFilter('ALL')}
-              className={`px-4 py-2 text-xs font-jetbrains uppercase tracking-wider transition-colors border ${
+              className={`px-4 py-2 text-xs font-sans uppercase tracking-wider transition-colors border ${
                 filter === 'ALL'
                   ? 'bg-black text-white border-black'
                   : 'bg-transparent text-black border-gray-300 hover:border-black'
@@ -64,23 +65,23 @@ export const CollectionPage: React.FC<CollectionPageProps> = ({ navigate }) => {
             </button>
             <button
               onClick={() => setFilter('SALE')}
-              className={`px-4 py-2 text-xs font-jetbrains uppercase tracking-wider transition-colors border ${
+              className={`px-4 py-2 text-xs font-sans uppercase tracking-wider transition-colors border ${
                 filter === 'SALE'
-                  ? 'bg-[#BC0100] text-white border-[#BC0100]'
-                  : 'bg-transparent text-black border-gray-300 hover:border-[#BC0100] hover:text-[#BC0100]'
+                  ? 'bg-accent text-white border-accent'
+                  : 'bg-transparent text-black border-gray-300 hover:border-accent hover:text-accent'
               }`}
             >
               ON SALE (15% OFF)
             </button>
             <button
               onClick={() => setFilter('FULL_PRICE')}
-              className={`px-4 py-2 text-xs font-jetbrains uppercase tracking-wider transition-colors border ${
+              className={`px-4 py-2 text-xs font-sans uppercase tracking-wider transition-colors border ${
                 filter === 'FULL_PRICE'
                   ? 'bg-black text-white border-black'
                   : 'bg-transparent text-black border-gray-300 hover:border-black'
               }`}
             >
-              FULL ARCHIVE
+              FULL PRICE
             </button>
           </div>
 
@@ -90,7 +91,7 @@ export const CollectionPage: React.FC<CollectionPageProps> = ({ navigate }) => {
             <select
               value={sort}
               onChange={(e) => setSort(e.target.value as any)}
-              className="bg-white border border-gray-300 px-3 py-2 text-xs font-jetbrains uppercase tracking-wider text-black outline-none focus:border-black cursor-pointer w-full sm:w-auto"
+              className="bg-white border border-gray-300 px-3 py-2 text-xs font-sans uppercase tracking-wider text-black outline-none focus:border-black cursor-pointer w-full sm:w-auto"
             >
               <option value="DEFAULT">SORT: FEATURED</option>
               <option value="PRICE_ASC">PRICE: LOW TO HIGH</option>
@@ -107,22 +108,22 @@ export const CollectionPage: React.FC<CollectionPageProps> = ({ navigate }) => {
           ))}
         </div>
 
-        {/* Archive Guarantee Callout */}
+        {/* About Callout */}
         <div className="mt-20 p-8 bg-black text-white border border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
-            <span className="font-jetbrains text-[10px] tracking-widest text-[#BC0100] uppercase block">
-              POLICY // ZERO RESTOCKS
+            <span className="font-sans text-[10px] tracking-widest text-accent uppercase block">
+              About us
             </span>
-            <h3 className="font-anton text-2xl uppercase tracking-wider text-white mt-1">
-              THE ZENJI ARCHIVE COMMITMENT
+            <h3 className="font-display text-2xl uppercase tracking-wider text-white mt-1">
+              ABOUT {BRAND.name}
             </h3>
-            <p className="font-ibm text-xs text-white/60 mt-1 max-w-xl">
-              Each garment in The Origin Drop is limited to a single manufacturing run. Once sold out, designs are archived permanently in the vault.
+            <p className="font-sans text-xs text-white/60 mt-1 max-w-xl">
+              Some designs are made in limited runs and may not return once they sell out. Read more about how we make our clothes.
             </p>
           </div>
           <button
             onClick={() => navigate('/our-story')}
-            className="shrink-0 px-6 py-3 border border-white text-xs font-jetbrains uppercase tracking-widest hover:bg-white hover:text-black transition-colors"
+            className="shrink-0 px-6 py-3 border border-white text-xs font-sans uppercase tracking-widest hover:bg-white hover:text-black transition-colors"
           >
             LEARN MORE →
           </button>

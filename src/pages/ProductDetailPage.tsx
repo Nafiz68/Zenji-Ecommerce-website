@@ -3,6 +3,7 @@ import { PRODUCTS, Product } from '../data/products';
 import { ProductCard } from '../components/ProductCard';
 import { useCart } from '../context/CartContext';
 import { Plus, Minus, Check, ChevronDown, ShieldCheck, Truck, RotateCcw } from 'lucide-react';
+import { BRAND } from '../brand';
 
 interface ProductDetailPageProps {
   slug: string;
@@ -53,9 +54,9 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug, navi
         {/* Back Link */}
         <button
           onClick={() => navigate('/collection')}
-          className="mb-8 inline-block font-jetbrains text-xs uppercase tracking-widest text-black/50 hover:text-black transition-colors"
+          className="mb-8 inline-block font-sans text-xs uppercase tracking-widest text-black/50 hover:text-black transition-colors"
         >
-          ← BACK TO COLLECTION
+          ← Back to shop
         </button>
 
         {/* Main Product Layout */}
@@ -69,7 +70,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug, navi
               {product.onSale && (
                 <span
                   style={{
-                    fontFamily: 'var(--font-jetbrains), monospace',
+                    fontFamily: 'var(--font-sans), monospace',
                     position: 'absolute',
                     top: '24px',
                     left: '-32px',
@@ -79,7 +80,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug, navi
                     textAlign: 'center',
                     fontSize: '9px',
                     fontWeight: 'bold',
-                    backgroundColor: '#BC0100',
+                    backgroundColor: '#4C6FFF',
                     color: '#fff',
                     letterSpacing: '0.5px',
                     zIndex: 20,
@@ -95,10 +96,6 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug, navi
                 alt={product.name}
                 className="h-full w-full object-cover object-top transition-opacity duration-300"
               />
-
-              <span className="pointer-events-none absolute bottom-4 right-4 bg-black/60 px-2.5 py-1 font-jetbrains text-[9px] text-white">
-                SCROLL TO BROWSE ↕
-              </span>
             </div>
 
             {/* Thumbnails Row */}
@@ -118,7 +115,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug, navi
                   >
                     <img
                       src={img.src}
-                      alt={`${product.name} angle ${idx + 1}`}
+                      alt={`${product.name}, ${img.label.toLowerCase()} view`}
                       className="h-full w-full object-cover object-top"
                     />
                   </button>
@@ -133,47 +130,47 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug, navi
           <div className="md:col-span-5 flex flex-col justify-start space-y-6">
             {/* Header */}
             <div>
-              <span className="font-jetbrains text-xs font-bold uppercase tracking-[0.25em] text-[#BC0100] block">
-                COLLECTION // THE_ORIGIN_DROP
+              <span className="font-sans text-xs font-bold uppercase tracking-[0.25em] text-accent block">
+                {BRAND.name}
               </span>
 
-              <h1 className="font-anton text-4xl sm:text-5xl uppercase tracking-tight text-black mt-2 leading-none">
+              <h1 className="font-display text-4xl sm:text-5xl uppercase tracking-tight text-black mt-2 leading-none">
                 {product.name}
               </h1>
 
               {/* Price Row */}
               <div className="mt-4 flex items-baseline gap-3">
-                <span className="font-anton text-3xl text-[#BC0100] tracking-wide">
+                <span className="font-display text-3xl text-accent tracking-wide">
                   {displayPrice}
                 </span>
                 {product.onSale && (
-                  <span className="font-jetbrains text-sm text-gray-400 line-through">
+                  <span className="font-sans text-sm text-gray-400 line-through">
                     {product.price}
                   </span>
                 )}
-                <span className="font-jetbrains text-xs uppercase bg-black/5 px-2 py-0.5 text-black/70">
+                <span className="font-sans text-xs uppercase bg-black/5 px-2 py-0.5 text-black/70">
                   {product.colorway}
                 </span>
               </div>
             </div>
 
             {/* Description */}
-            <p className="font-ibm text-xs sm:text-sm text-gray-600 leading-relaxed border-t border-b border-gray-100 py-4">
+            <p className="font-sans text-xs sm:text-sm text-gray-600 leading-relaxed border-t border-b border-gray-100 py-4">
               {product.description}
             </p>
 
             {/* Size Variant Selector */}
             <div>
               <div className="flex justify-between items-center mb-2.5">
-                <span className="font-jetbrains text-xs font-bold uppercase tracking-wider text-black">
-                  SIZE: <span className="text-[#BC0100]">{selectedSize}</span>
+                <span className="font-sans text-xs font-bold uppercase tracking-wider text-black">
+                  Size: <span className="text-accent">{selectedSize}</span>
                 </span>
                 <button
                   type="button"
                   onClick={() => setIsSizeGuideOpen(true)}
-                  className="font-jetbrains text-xs text-gray-500 hover:text-black underline uppercase tracking-widest"
+                  className="font-sans text-xs text-gray-500 hover:text-black underline uppercase tracking-widest"
                 >
-                  SIZE GUIDE
+                  Size guide
                 </button>
               </div>
 
@@ -185,7 +182,7 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug, navi
                       key={sz}
                       type="button"
                       onClick={() => setSelectedSize(sz)}
-                      className={`h-12 font-jetbrains text-xs uppercase font-bold border transition-all ${
+                      className={`h-12 font-sans text-xs uppercase font-bold border transition-all ${
                         isSelected
                           ? 'bg-black text-white border-black shadow-md'
                           : 'bg-white text-black border-gray-300 hover:border-black'
@@ -200,23 +197,25 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug, navi
 
             {/* Quantity Selector */}
             <div>
-              <span className="font-jetbrains text-xs font-bold uppercase tracking-wider text-black block mb-2">
-                QUANTITY
+              <span className="font-sans text-xs font-bold uppercase tracking-wider text-black block mb-2">
+                Quantity
               </span>
               <div className="inline-flex items-center border border-black bg-white">
                 <button
                   type="button"
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                  aria-label="Decrease quantity"
                   className="p-3 text-black hover:bg-black hover:text-white transition-colors"
                 >
                   <Minus className="w-4 h-4" />
                 </button>
-                <span className="px-5 font-jetbrains text-sm font-bold text-black">
+                <span className="px-5 font-sans text-sm font-bold text-black">
                   {quantity}
                 </span>
                 <button
                   type="button"
                   onClick={() => setQuantity(quantity + 1)}
+                  aria-label="Increase quantity"
                   className="p-3 text-black hover:bg-black hover:text-white transition-colors"
                 >
                   <Plus className="w-4 h-4" />
@@ -229,38 +228,38 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug, navi
               <button
                 type="button"
                 onClick={handleAddToCart}
-                className="w-full bg-[#BC0100] hover:bg-black text-white py-4 px-6 font-anton text-lg uppercase tracking-wider transition-colors duration-200 flex items-center justify-center gap-2 shadow-lg"
+                className="w-full bg-accent hover:bg-black text-white py-4 px-6 font-display text-lg uppercase tracking-wider transition-colors duration-200 flex items-center justify-center gap-2 shadow-lg"
               >
                 {addedAnimation ? (
                   <>
-                    <Check className="w-5 h-5" /> ADDED TO SECTOR CRATE
+                    <Check className="w-5 h-5" /> Added to bag
                   </>
                 ) : (
-                  <>ADD TO CRATE — {displayPrice}</>
+                  <>Add to bag — {displayPrice}</>
                 )}
               </button>
             </div>
 
             {/* Trust Badges */}
-            <div className="grid grid-cols-3 gap-2 py-4 border-t border-gray-200 text-center font-jetbrains text-[10px] text-gray-500 uppercase">
+            <div className="grid grid-cols-3 gap-2 py-4 border-t border-gray-200 text-center font-sans text-[10px] text-gray-500 uppercase">
               <div className="flex flex-col items-center gap-1">
-                <Truck className="w-4 h-4 text-[#BC0100]" />
-                <span>AU EXPRESS SHIP</span>
+                <Truck className="w-4 h-4 text-accent" />
+                <span>Australia Post delivery</span>
               </div>
               <div className="flex flex-col items-center gap-1">
-                <ShieldCheck className="w-4 h-4 text-[#BC0100]" />
-                <span>240GSM COTTON</span>
+                <ShieldCheck className="w-4 h-4 text-accent" />
+                <span>Heavyweight cotton</span>
               </div>
               <div className="flex flex-col items-center gap-1">
-                <RotateCcw className="w-4 h-4 text-[#BC0100]" />
-                <span>ZERO RESTOCKS</span>
+                <RotateCcw className="w-4 h-4 text-accent" />
+                <span>30-day returns</span>
               </div>
             </div>
 
             {/* -------------------------------------------------------------
                 ACCORDION SPECIFICATIONS
                 ------------------------------------------------------------- */}
-            <div className="border-t border-gray-200 divide-y divide-gray-200 pt-2 font-jetbrains">
+            <div className="border-t border-gray-200 divide-y divide-gray-200 pt-2 font-sans">
               {/* 01. Product Details */}
               <div>
                 <button
@@ -268,15 +267,15 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug, navi
                   onClick={() => setOpenAccordion(openAccordion === 'details' ? '' : 'details')}
                   className="w-full py-4 flex items-center justify-between text-xs font-bold uppercase tracking-wider text-black"
                 >
-                  <span>01 // PRODUCT DETAILS</span>
+                  <span>Product details</span>
                   <ChevronDown
                     className={`w-4 h-4 transition-transform ${
-                      openAccordion === 'details' ? 'rotate-180 text-[#BC0100]' : ''
+                      openAccordion === 'details' ? 'rotate-180 text-accent' : ''
                     }`}
                   />
                 </button>
                 {openAccordion === 'details' && (
-                  <ul className="pb-4 space-y-1.5 font-ibm text-xs text-gray-600 list-disc list-inside">
+                  <ul className="pb-4 space-y-1.5 font-sans text-xs text-gray-600 list-disc list-inside">
                     {product.details.map((dt, i) => (
                       <li key={i}>{dt}</li>
                     ))}
@@ -291,39 +290,40 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug, navi
                   onClick={() => setOpenAccordion(openAccordion === 'shipping' ? '' : 'shipping')}
                   className="w-full py-4 flex items-center justify-between text-xs font-bold uppercase tracking-wider text-black"
                 >
-                  <span>02 // SHIPPING & DELIVERY</span>
+                  <span>Shipping & delivery</span>
                   <ChevronDown
                     className={`w-4 h-4 transition-transform ${
-                      openAccordion === 'shipping' ? 'rotate-180 text-[#BC0100]' : ''
+                      openAccordion === 'shipping' ? 'rotate-180 text-accent' : ''
                     }`}
                   />
                 </button>
                 {openAccordion === 'shipping' && (
-                  <div className="pb-4 space-y-2 font-ibm text-xs text-gray-600 leading-relaxed">
-                    <p>• <strong>Free Australia-wide shipping</strong> on orders over A$150.</p>
-                    <p>• Standard domestic delivery: 5-10 business days via Australia Post.</p>
-                    <p>• Tracking number provided via email upon dispatch from our Australian hub.</p>
+                  <div className="pb-4 space-y-2 font-sans text-xs text-gray-600 leading-relaxed">
+                    <p>We ship with Australia Post. Delivery usually takes 5–10 business days.</p>
+                    <p>Shipping is free on orders over A$150.</p>
+                    <p>We'll email you a tracking number when your order is dispatched.</p>
                   </div>
                 )}
               </div>
 
-              {/* 03. Archive & Restock Policy */}
+              {/* 03. Returns */}
               <div>
                 <button
                   type="button"
-                  onClick={() => setOpenAccordion(openAccordion === 'restocks' ? '' : 'restocks')}
+                  onClick={() => setOpenAccordion(openAccordion === 'returns' ? '' : 'returns')}
                   className="w-full py-4 flex items-center justify-between text-xs font-bold uppercase tracking-wider text-black"
                 >
-                  <span>03 // NO RESTOCKS COMMITMENT</span>
+                  <span>Returns</span>
                   <ChevronDown
                     className={`w-4 h-4 transition-transform ${
-                      openAccordion === 'restocks' ? 'rotate-180 text-[#BC0100]' : ''
+                      openAccordion === 'returns' ? 'rotate-180 text-accent' : ''
                     }`}
                   />
                 </button>
-                {openAccordion === 'restocks' && (
-                  <div className="pb-4 font-ibm text-xs text-gray-600 leading-relaxed">
-                    ZENJI pieces are strictly limited. Once a drop sells out, it will never be reproduced. All pieces are final release.
+                {openAccordion === 'returns' && (
+                  <div className="pb-4 space-y-2 font-sans text-xs text-gray-600 leading-relaxed">
+                    <p>Changed your mind? Return unworn items within 30 days.</p>
+                    <p>Faulty items are covered under the Australian Consumer Law.</p>
                   </div>
                 )}
               </div>
@@ -336,11 +336,11 @@ export const ProductDetailPage: React.FC<ProductDetailPageProps> = ({ slug, navi
             ------------------------------------------------------------- */}
         <section className="mt-28 border-t border-black/10 pt-16">
           <div className="mb-10">
-            <span className="font-jetbrains text-xs uppercase tracking-[0.3em] text-[#BC0100] block mb-1">
-              SECTOR RECOMMENDATIONS
+            <span className="font-sans text-xs uppercase tracking-[0.3em] text-accent block mb-1">
+              Keep browsing
             </span>
-            <h2 className="font-anton text-4xl uppercase text-black">
-              YOU MIGHT ALSO LIKE
+            <h2 className="font-display text-4xl uppercase text-black">
+              You might also like
             </h2>
           </div>
 

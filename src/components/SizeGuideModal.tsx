@@ -24,13 +24,13 @@ export const SizeGuideModal: React.FC = () => {
         {/* Header */}
         <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
           <div className="flex items-center gap-3">
-            <Ruler className="w-6 h-6 text-[#BC0100]" />
+            <Ruler className="w-6 h-6 text-accent" />
             <div>
-              <span className="text-[10px] font-jetbrains tracking-widest text-[#BC0100] uppercase block">
-                TECHNICAL FIT SPECIFICATION
+              <span className="text-[10px] font-sans tracking-widest text-accent uppercase block">
+                Fit
               </span>
-              <h3 className="text-2xl font-anton uppercase tracking-wider text-white">
-                ZENJI OVERSIZED SIZE GUIDE
+              <h3 className="text-2xl font-display uppercase tracking-wider text-white">
+                Size guide
               </h3>
             </div>
           </div>
@@ -45,45 +45,45 @@ export const SizeGuideModal: React.FC = () => {
 
         {/* Unit Toggle */}
         <div className="flex justify-between items-center mb-6">
-          <span className="text-xs font-jetbrains text-white/50 uppercase tracking-wider">
-            ALL MEASUREMENTS TAKEN FLAT
+          <span className="text-xs font-sans text-white/50 uppercase tracking-wider">
+            Garment measured laid flat
           </span>
           <div className="inline-flex border border-white/20 bg-black">
             <button
               onClick={() => setUnit('cm')}
-              className={`px-3 py-1.5 text-xs font-jetbrains uppercase font-bold transition-colors ${
+              className={`px-3 py-1.5 text-xs font-sans uppercase font-bold transition-colors ${
                 unit === 'cm' ? 'bg-white text-black' : 'text-white/60 hover:text-white'
               }`}
             >
-              CENTIMETERS (CM)
+              cm
             </button>
             <button
               onClick={() => setUnit('inches')}
-              className={`px-3 py-1.5 text-xs font-jetbrains uppercase font-bold transition-colors ${
+              className={`px-3 py-1.5 text-xs font-sans uppercase font-bold transition-colors ${
                 unit === 'inches' ? 'bg-white text-black' : 'text-white/60 hover:text-white'
               }`}
             >
-              INCHES (IN)
+              in
             </button>
           </div>
         </div>
 
         {/* Measurements Table */}
         <div className="overflow-x-auto border border-white/10">
-          <table className="w-full text-left font-jetbrains text-xs">
+          <table className="w-full text-left font-sans text-xs">
             <thead>
               <tr className="bg-white/5 border-b border-white/10 text-white/50 uppercase tracking-wider">
-                <th className="p-3">SIZE</th>
-                <th className="p-3">CHEST WIDTH</th>
-                <th className="p-3">BODY LENGTH</th>
-                <th className="p-3">SHOULDER</th>
-                <th className="p-3">SLEEVE</th>
+                <th className="p-3">Size</th>
+                <th className="p-3">Chest width</th>
+                <th className="p-3">Body length</th>
+                <th className="p-3">Shoulder</th>
+                <th className="p-3">Sleeve</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-white/5">
               {chartData.map((row) => (
                 <tr key={row.size} className="hover:bg-white/5 transition-colors">
-                  <td className="p-3 font-anton text-sm font-bold text-white text-[#BC0100]">
+                  <td className="p-3 font-display text-sm font-bold text-white text-accent">
                     {row.size}
                   </td>
                   <td className="p-3 text-white/80">{row.chest} {unit}</td>
@@ -98,16 +98,16 @@ export const SizeGuideModal: React.FC = () => {
 
         {/* Fit Guidelines */}
         <div className="mt-6 p-4 bg-black border border-white/10 space-y-2">
-          <h4 className="font-jetbrains text-[11px] font-bold uppercase tracking-widest text-[#BC0100]">
-            SILHOUETTE & FIT ADVICE
+          <h4 className="font-sans text-[11px] font-bold uppercase tracking-widest text-accent">
+            How it fits
           </h4>
-          <p className="font-ibm text-xs text-white/70 leading-relaxed">
-            All ZENJI garments are tailored with an authentic <strong>Cyber-Ronin oversized drop-shoulder cut</strong> in 240gsm heavyweight combed cotton.
+          <p className="font-sans text-xs text-white/70 leading-relaxed">
+            Our tees have a <strong>relaxed fit with dropped shoulders</strong>.
           </p>
-          <ul className="list-disc list-inside font-ibm text-xs text-white/60 space-y-1">
-            <li>Choose your <strong>standard size</strong> for the signature oversized drape.</li>
-            <li>Size <strong>down one step</strong> if you prefer a standard tailored streetwear fit.</li>
-            <li>Preshrunk fabric minimizes shrinkage during gentle cold wash.</li>
+          <ul className="list-disc list-inside font-sans text-xs text-white/60 space-y-1">
+            <li>Take your <strong>usual size</strong> for a relaxed fit.</li>
+            <li>Size <strong>down one</strong> for a closer fit.</li>
+            <li>Compare with a tee you already own, measured laid flat.</li>
           </ul>
         </div>
       </div>

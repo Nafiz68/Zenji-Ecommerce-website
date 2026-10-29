@@ -34,7 +34,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, navigate, dar
         {product.onSale && (
           <span
             style={{
-              fontFamily: 'var(--font-jetbrains), monospace',
+              fontFamily: 'var(--font-sans), monospace',
               position: 'absolute',
               top: '22px',
               left: '-30px',
@@ -44,7 +44,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, navigate, dar
               textAlign: 'center',
               fontSize: '9px',
               fontWeight: 'bold',
-              backgroundColor: '#BC0100',
+              backgroundColor: '#4C6FFF',
               color: '#ffffff',
               letterSpacing: '0.5px',
               zIndex: 20,
@@ -57,7 +57,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, navigate, dar
 
         {product.badge === 'LIMITED' && !product.onSale && (
           <div className="absolute top-3 right-3 z-20">
-            <span className="bg-black/90 text-white font-jetbrains text-[9px] font-bold px-2 py-0.5 uppercase tracking-widest border border-white/20">
+            <span className="bg-black/90 text-white font-sans text-[9px] font-bold px-2 py-0.5 uppercase tracking-widest border border-white/20">
               LIMITED
             </span>
           </div>
@@ -66,7 +66,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, navigate, dar
         {/* Front Image */}
         <img
           src={product.images.front}
-          alt={`ZENJI ${product.name}, front view`}
+          alt={`${product.name}, front view`}
           loading="lazy"
           className="absolute inset-0 h-full w-full object-cover object-top opacity-100 transition-opacity duration-300 group-hover:opacity-0"
         />
@@ -74,7 +74,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, navigate, dar
         {/* Back Image (Revealed on Hover) */}
         <img
           src={product.images.back}
-          alt={`ZENJI ${product.name}, back view`}
+          alt={`${product.name}, back view`}
           loading="lazy"
           className="absolute inset-0 h-full w-full object-cover object-top opacity-0 transition-opacity duration-300 group-hover:opacity-100"
         />
@@ -87,8 +87,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, navigate, dar
             setQuickViewProduct(product);
           }}
         >
-          <span className="font-jetbrains text-[11px] uppercase tracking-widest text-white hover:text-[#BC0100] transition-colors flex items-center gap-1">
-            QUICK VIEW →
+          <span className="font-sans text-[11px] uppercase tracking-widest text-white hover:text-accent transition-colors flex items-center gap-1">
+            Quick view →
           </span>
         </div>
       </div>
@@ -96,8 +96,8 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, navigate, dar
       {/* Product Metadata Bar */}
       <div className={`p-4 border-t ${dark ? 'border-white/10 bg-[#0E0E0E]' : 'border-black bg-white'}`}>
         <span
-          className={`block truncate text-sm font-anton uppercase tracking-widest transition-colors ${
-            dark ? 'text-white group-hover:text-[#BC0100]' : 'text-black group-hover:text-[#BC0100]'
+          className={`block truncate text-sm font-display uppercase tracking-widest transition-colors ${
+            dark ? 'text-white group-hover:text-accent' : 'text-black group-hover:text-accent'
           }`}
         >
           {product.name}
@@ -106,16 +106,16 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, navigate, dar
         <div className="mt-2 flex flex-col gap-0.5">
           {product.onSale && product.salePrice ? (
             <div className="flex items-baseline gap-2.5">
-              <span className="font-anton text-2xl leading-none tracking-wide text-[#BC0100]">
+              <span className="font-display text-2xl leading-none tracking-wide text-accent">
                 {product.salePrice}
               </span>
-              <span className="font-jetbrains text-xs tracking-wider text-gray-400 line-through">
+              <span className="font-sans text-xs tracking-wider text-gray-400 line-through">
                 {product.price}
               </span>
             </div>
           ) : (
             <span
-              className={`font-anton text-2xl leading-none tracking-wide ${
+              className={`font-display text-2xl leading-none tracking-wide ${
                 dark ? 'text-white' : 'text-black'
               }`}
             >

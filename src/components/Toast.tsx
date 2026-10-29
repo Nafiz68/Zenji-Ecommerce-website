@@ -19,24 +19,25 @@ export const ToastContainer: React.FC = () => {
           className="pointer-events-auto flex items-start gap-3 p-4 bg-[#0A0A0A] border border-white/20 text-white shadow-2xl animate-slideUp backdrop-blur-md"
         >
           {toast.type === 'error' ? (
-            <AlertCircle className="w-5 h-5 text-[#BC0100] flex-shrink-0 mt-0.5" />
+            <AlertCircle className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
           ) : toast.type === 'info' ? (
             <Info className="w-5 h-5 text-sky-400 flex-shrink-0 mt-0.5" />
           ) : (
-            <CheckCircle2 className="w-5 h-5 text-[#BC0100] flex-shrink-0 mt-0.5" />
+            <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
           )}
 
           <div className="flex-1">
-            <span className="block font-jetbrains text-[10px] font-bold tracking-widest text-[#BC0100] uppercase">
+            <span className="block font-sans text-[10px] font-bold tracking-widest text-accent uppercase">
               {toast.title}
             </span>
-            <p className="font-ibm text-xs text-white/90 mt-0.5 leading-snug">
+            <p className="font-sans text-xs text-white/90 mt-0.5 leading-snug">
               {toast.message}
             </p>
           </div>
 
           <button
             onClick={() => removeToast(toast.id)}
+            aria-label="Dismiss"
             className="text-white/40 hover:text-white transition-colors"
           >
             <X className="w-4 h-4" />

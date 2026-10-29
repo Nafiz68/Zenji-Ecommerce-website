@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CartProvider } from './context/CartContext';
 import { SmoothScroll } from './components/SmoothScroll';
-import { SplashIntro } from './components/SplashIntro';
-import { KatanaCursor } from './components/KatanaCursor';
 import { MarqueeTicker } from './components/MarqueeTicker';
 import { Navbar } from './components/Navbar';
 import { CartDrawer } from './components/CartDrawer';
@@ -82,20 +80,14 @@ export function AppContent() {
 
   return (
     <SmoothScroll>
-      <div className="flex min-h-screen flex-col bg-black text-white selection:bg-[#BC0100] selection:text-white">
-        {/* 1. Awakening Intro Animation */}
-        <SplashIntro />
-
-        {/* 2. Realistic 3D Katana Custom Cursor & Blade Trail */}
-        <KatanaCursor />
-
-        {/* 3. Top Marquee Announcement Ticker */}
+      <div className="flex min-h-screen flex-col bg-black text-white selection:bg-accent selection:text-white">
+        {/* 1. Top Announcement Ticker */}
         <MarqueeTicker />
 
-        {/* 4. Sticky Navbar */}
+        {/* 2. Sticky Navbar */}
         <Navbar currentPath={currentPath} navigate={navigate} />
 
-        {/* 5. Active Page Content with Framer Motion Page Transition */}
+        {/* 3. Active Page Content with Framer Motion Page Transition */}
         <div className="flex-1 w-full">
           <AnimatePresence mode="wait">
             <motion.div
@@ -110,10 +102,10 @@ export function AppContent() {
           </AnimatePresence>
         </div>
 
-        {/* 6. Footer */}
+        {/* 4. Footer */}
         <Footer navigate={navigate} />
 
-        {/* 7. Global Modals & Drawers */}
+        {/* 5. Global Modals & Drawers */}
         <CartDrawer navigate={navigate} />
         <QuickViewModal navigate={navigate} />
         <SearchModal navigate={navigate} />

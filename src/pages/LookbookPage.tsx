@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { LOOKBOOK_ITEMS, LookbookItem } from '../data/products';
+import { BRAND } from '../brand';
 
 interface LookbookPageProps {
   navigate: (path: string) => void;
@@ -16,33 +17,33 @@ export const LookbookPage: React.FC<LookbookPageProps> = ({ navigate }) => {
   return (
     <main className="bg-white text-black min-h-screen">
       {/* -------------------------------------------------------------
-          1. EDITORIAL HEADER (Dark Cyber-Ronin Banner)
+          1. EDITORIAL HEADER (dark banner)
           ------------------------------------------------------------- */}
       <section className="relative overflow-hidden bg-black text-white py-24 md:py-32 px-6 md:px-14 border-b border-white/10">
         <div className="relative z-10 mx-auto max-w-[1440px]">
-          <span className="font-jetbrains text-[10px] md:text-[11px] tracking-[0.4em] text-[#BC0100] uppercase block mb-4">
-            THE_ORIGIN_DROP // EDITORIAL
+          <span className="font-sans text-[10px] md:text-[11px] tracking-[0.4em] text-accent uppercase block mb-4">
+            Lookbook
           </span>
 
-          <h1 className="font-anton uppercase leading-[0.85] text-5xl sm:text-7xl md:text-8xl lg:text-[110px] text-white">
-            <span className="block">ANIME STREETWEAR —</span>
+          <h1 className="font-display uppercase leading-[0.85] text-5xl sm:text-7xl md:text-8xl lg:text-[110px] text-white">
+            <span className="block">THE</span>
             <span className="block text-white/90">LOOK BOOK</span>
           </h1>
 
-          <p className="font-ibm text-xs sm:text-sm text-white/50 mt-6 max-w-md">
-            The Origin Drop, The Full Visual Archive. Japanese minimalism meets aggressive high-contrast streetwear.
+          <p className="font-sans text-xs sm:text-sm text-white/50 mt-6 max-w-md">
+            Every piece in the current collection, front, back and worn. Tap an image to see the product.
           </p>
 
-          <div className="relative z-10 mt-12 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-t border-white/10 pt-6 font-jetbrains text-xs text-white/40">
-            <span>10 PIECES // THE_ORIGIN_DROP</span>
-            <span>ANIME STREETWEAR // AUSTRALIA</span>
+          <div className="relative z-10 mt-12 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-t border-white/10 pt-6 font-sans text-xs text-white/40">
+            <span>{BRAND.name}</span>
+            <span>AUSTRALIA</span>
           </div>
         </div>
 
         {/* Ambient Big Year Number in Background */}
         <span
           aria-hidden="true"
-          className="pointer-events-none absolute right-6 top-1/2 -translate-y-1/2 font-anton text-[220px] text-white/[0.03] select-none hidden lg:block"
+          className="pointer-events-none absolute right-6 top-1/2 -translate-y-1/2 font-display text-[220px] text-white/[0.03] select-none hidden lg:block"
         >
           2026
         </span>
@@ -57,7 +58,7 @@ export const LookbookPage: React.FC<LookbookPageProps> = ({ navigate }) => {
             <button
               key={cat}
               onClick={() => setFilter(cat)}
-              className={`flex min-h-[40px] items-center border px-4 py-1.5 text-[11px] font-jetbrains uppercase tracking-wider transition-colors ${
+              className={`flex min-h-[40px] items-center border px-4 py-1.5 text-[11px] font-sans uppercase tracking-wider transition-colors ${
                 filter === cat
                   ? 'bg-black text-white border-black font-bold'
                   : 'bg-transparent text-black border-black/20 hover:border-black'
@@ -68,7 +69,7 @@ export const LookbookPage: React.FC<LookbookPageProps> = ({ navigate }) => {
           ))}
         </div>
 
-        <span className="font-jetbrains text-[11px] uppercase tracking-widest text-black/50">
+        <span className="font-sans text-[11px] uppercase tracking-widest text-black/50">
           {filteredItems.length} IMAGES
         </span>
       </div>
@@ -88,7 +89,7 @@ export const LookbookPage: React.FC<LookbookPageProps> = ({ navigate }) => {
                 {/* Image */}
                 <img
                   src={item.image}
-                  alt={`ZENJI ${item.productName}, ${item.category}`}
+                  alt={`${BRAND.name} ${item.productName}, ${item.category}`}
                   loading="lazy"
                   className="w-full h-auto object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
@@ -96,19 +97,19 @@ export const LookbookPage: React.FC<LookbookPageProps> = ({ navigate }) => {
                 {/* Hover Overlay */}
                 <div className="absolute inset-0 flex flex-col justify-between p-6 bg-black/0 transition-colors duration-300 group-hover:bg-black/75">
                   {/* Top Tag */}
-                  <span className="font-jetbrains text-[10px] uppercase font-bold tracking-widest text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-[#BC0100] px-2 py-0.5 w-fit">
+                  <span className="font-sans text-[10px] uppercase font-bold tracking-widest text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-accent px-2 py-0.5 w-fit">
                     {item.tag}
                   </span>
 
                   {/* Bottom Text Slide-up */}
                   <div className="opacity-0 transition-opacity duration-300 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                    <p className="font-anton text-2xl uppercase tracking-wider text-white">
+                    <p className="font-display text-2xl uppercase tracking-wider text-white">
                       {item.productName}
                     </p>
-                    <p className="font-jetbrains text-[11px] text-white/60 uppercase tracking-widest mt-0.5">
+                    <p className="font-sans text-[11px] text-white/60 uppercase tracking-widest mt-0.5">
                       VIEW: {item.category}
                     </p>
-                    <p className="font-jetbrains text-xs font-bold text-[#BC0100] uppercase tracking-wider mt-3">
+                    <p className="font-sans text-xs font-bold text-accent uppercase tracking-wider mt-3">
                       VIEW PRODUCT →
                     </p>
                   </div>

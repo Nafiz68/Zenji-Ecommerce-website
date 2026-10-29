@@ -47,6 +47,3 @@ Thumbs.db
 # Vite temporary timestamp files
 vite.config.ts.timestamp-*
 *.timestamp-*.mjs
-
-# Raw scrape/reference folders (if any)
-zenji_shop/

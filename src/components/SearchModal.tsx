@@ -41,7 +41,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ navigate }) => {
     navigate(`/drop/${slug}`);
   };
 
-  const quickTags = ['SALE 15% OFF', 'BLUE FLAME', 'DEMON BLOOD', 'WARRIOR SPIRIT', 'BUSHIDO', 'LIMITLESS'];
+  const quickTags = ['NEW', 'SALE', ...Array.from(new Set(PRODUCTS.map((p) => p.colorway)))];
 
   return (
     <div className="fixed inset-0 z-[99993] flex flex-col items-center justify-start pt-16 px-4 md:px-8">
@@ -55,21 +55,21 @@ export const SearchModal: React.FC<SearchModalProps> = ({ navigate }) => {
       <div className="relative w-full max-w-3xl bg-[#0C0C0C] border border-white/15 shadow-2xl overflow-hidden z-10 animate-scaleUp">
         {/* Search Header */}
         <div className="p-4 md:p-6 border-b border-white/10 flex items-center gap-3 bg-black">
-          <Search className="w-6 h-6 text-[#BC0100] flex-shrink-0" />
+          <Search className="w-6 h-6 text-accent flex-shrink-0" />
           <input
             ref={inputRef}
             type="search"
-            placeholder="SEARCH DROPS, COLORWAYS, DESIGNS..."
+            placeholder="Search products"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="flex-1 bg-transparent text-white font-jetbrains text-sm md:text-base outline-none tracking-wider placeholder:text-white/30"
+            className="flex-1 bg-transparent text-white font-sans text-sm md:text-base outline-none tracking-wider placeholder:text-white/30"
           />
           {query && (
             <button
               onClick={() => setQuery('')}
               className="text-white/40 hover:text-white p-1"
             >
-              CLEAR
+              Clear
             </button>
           )}
           <button
@@ -83,14 +83,14 @@ export const SearchModal: React.FC<SearchModalProps> = ({ navigate }) => {
 
         {/* Quick Tag Pills */}
         <div className="px-6 py-3 bg-[#141414] border-b border-white/10 flex flex-wrap items-center gap-2">
-          <span className="text-[10px] font-jetbrains tracking-widest text-white/40 uppercase">
-            QUICK TAGS:
+          <span className="text-[10px] font-sans tracking-widest text-white/40 uppercase">
+            Try:
           </span>
           {quickTags.map((tag) => (
             <button
               key={tag}
               onClick={() => setQuery(tag)}
-              className="text-[10px] font-jetbrains uppercase px-2.5 py-1 bg-white/5 border border-white/15 hover:border-[#BC0100] hover:text-[#BC0100] transition-colors text-white/70"
+              className="text-[10px] font-sans uppercase px-2.5 py-1 bg-white/5 border border-white/15 hover:border-accent hover:text-accent transition-colors text-white/70"
             >
               {tag}
             </button>
@@ -100,8 +100,8 @@ export const SearchModal: React.FC<SearchModalProps> = ({ navigate }) => {
         {/* Results List */}
         <div className="max-h-[60vh] overflow-y-auto p-4 md:p-6 space-y-3">
           {filteredProducts.length === 0 ? (
-            <div className="py-12 text-center text-white/50 font-jetbrains text-xs">
-              NO DROPS FOUND MATCHING "{query.toUpperCase()}".
+            <div className="py-12 text-center text-white/50 font-sans text-xs">
+              No products match "{query}".
             </div>
           ) : (
             filteredProducts.map((prod) => (
@@ -120,28 +120,28 @@ export const SearchModal: React.FC<SearchModalProps> = ({ navigate }) => {
                   </div>
                   <div>
                     <div className="flex items-center gap-2">
-                      <h4 className="font-anton text-base uppercase text-white group-hover:text-[#BC0100] transition-colors">
+                      <h4 className="font-display text-base uppercase text-white group-hover:text-accent transition-colors">
                         {prod.name}
                       </h4>
                       {prod.onSale && (
-                        <span className="text-[9px] font-jetbrains font-bold bg-[#BC0100] text-white px-1.5 py-0.2 uppercase">
+                        <span className="text-[9px] font-sans font-bold bg-accent text-white px-1.5 py-0.2 uppercase">
                           SALE
                         </span>
                       )}
                     </div>
-                    <span className="text-[11px] font-jetbrains text-white/40 uppercase block mt-0.5">
-                      {prod.colorway} • 240GSM COTTON
+                    <span className="text-[11px] font-sans text-white/40 uppercase block mt-0.5">
+                      {prod.colorway}
                     </span>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-4">
                   <div className="text-right">
-                    <span className="font-anton text-base text-white block">
+                    <span className="font-display text-base text-white block">
                       {prod.onSale && prod.salePrice ? prod.salePrice : prod.price}
                     </span>
                     {prod.onSale && (
-                      <span className="text-[10px] font-jetbrains text-white/40 line-through block">
+                      <span className="text-[10px] font-sans text-white/40 line-through block">
                         {prod.price}
                       </span>
                     )}
